@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaccine Registration</title>
+    <link rel="stylesheet" href="yash.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4); /* Gradient background */
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #ff004f;
+        }
+        form {
+            margin-bottom: 30px;
+        }
+        form input, form select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        form button {
+            background: #ff004f;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        form button:hover {
+            background: #e60045;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table th, table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        table th {
+            background: #ff004f;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vaccine Registration</h1>
+        <form id="registrationForm">
+            <input type="text" id="name" placeholder="Enter Name" required>
+            <input type="number" id="age" placeholder="Enter Age" required>
+            <select id="gender" required>
+                <option value="" disabled selected>Select Gender</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+            <input type="text" id="address" placeholder="Enter Address" required>
+            <input type="text" id="phone" placeholder="Enter Phone Number" required>
+            <input type="text" id="vaccine" placeholder="Enter Vaccine Name" required>
+            <input type="date" id="date" required>
+            <button type="button" onclick="registerPatient()">Register</button>
+        </form>
+        <h2>Registered Patients</h2>
+        <table id="patientsTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Vaccine</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Registered patients will appear here -->
+            </tbody>
+        </table>
+    </div>
+    <script>
+        const patientsTable = document.getElementById('patientsTable').getElementsByTagName('tbody')[0];
+
+        function registerPatient() {
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const gender = document.getElementById('gender').value;
+            const address = document.getElementById('address').value;
+            const phone = document.getElementById('phone').value;
+            const vaccine = document.getElementById('vaccine').value;
+            const date = document.getElementById('date').value;
+
+            if (name && age && gender && address && phone && vaccine && date) {
+                const newRow = patientsTable.insertRow();
+                newRow.innerHTML = `
+                    <td>${name}</td>
+                    <td>${age}</td>
+                    <td>${gender}</td>
+                    <td>${address}</td>
+                    <td>${phone}</td>
+                    <td>${vaccine}</td>
+                    <td>${date}</td>
+                `;
+                document.getElementById('registrationForm').reset();
+                alert('Patient registered successfully!');
+            } else {
+                alert('Please fill out all fields.');
+            }
+        }
+    </script>
+</body>
+</html>
